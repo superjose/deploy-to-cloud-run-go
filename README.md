@@ -9,7 +9,7 @@ An example project that shows you how to deploy to Google Cloud Run step by step
 - The only configuration folder lies inside the ./pulumi'
 
 2. We modify the Dockerfile:
-   a. We set golang to ver 1)22-alpine (Fixed in recent versions of Gowebly CLI)
+   a. We set golang to ver 1.22-alpine (Fixed in recent versions of Gowebly CLI)
    b. We add the `ENV HOME=/root` to the Dockerfile (Before the `ENTRYPOINT`). Otherwise the Docker image wouldn't run. [Here's why](https://stackoverflow.com/questions/71083833/docker-container-runs-locally-but-fails-on-cloud-run)
 
 ## Get the CLIs:
