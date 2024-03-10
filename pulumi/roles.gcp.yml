@@ -1,0 +1,32 @@
+title: Pulumi GCP Permissions
+description: Permissions for Pulumi GCP deployments
+stage: GA
+includedPermissions:
+  - serviceusage.services.list
+  - serviceusage.services.enable
+  - serviceusage.services.disable
+  - serviceusage.services.get
+  - serviceusage.services.use
+    # Permissions for GCR
+  - storage.objects.create
+  - storage.objects.delete # Optional: only include if you need to delete images
+  - storage.objects.get
+  # Permissions for Google Artifact Registry
+  - artifactregistry.repositories.create
+  - artifactregistry.repositories.delete
+  - artifactregistry.repositories.get
+  - artifactregistry.repositories.list
+  - artifactregistry.repositories.update
+  - artifactregistry.repositories.downloadArtifacts
+  - artifactregistry.repositories.uploadArtifacts
+  - artifactregistry.repositories.deleteArtifacts
+  # Permissions
+  # Permissions
+  - run.services.create
+  - run.services.get
+  - run.services.list
+  - run.services.update
+  - run.services.delete
+  - run.services.getIamPolicy
+  - run.services.setIamPolicy
+  - iam.serviceAccounts.actAs

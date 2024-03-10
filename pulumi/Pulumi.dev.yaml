@@ -1,0 +1,2 @@
+config:
+  gcp:project: deploy-to-cloud-run-go
