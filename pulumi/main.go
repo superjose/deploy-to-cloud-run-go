@@ -87,11 +87,19 @@ type EnabledServices struct {
 }
 
 func enableServices(ctx *pulumi.Context) (EnabledServices, error) {
+	cloudResourceManager, cloudResourceErr := projects.NewService(ctx, "cloud-resource-manager", &projects.ServiceArgs{
+		Service: pulumi.String("cloudresourcemanager.googleapis.com"),
+		Project: pulumi.String(gcpProjectId),
+	})
+
+	if cloudResourceErr != nil {
+		return EnabledServices{}, cloudResourceErr
+	}
 
 	cloudRunService, cloudRunAdminErr := projects.NewService(ctx, cloudRunAdminServiceName, &projects.ServiceArgs{
 		Service: pulumi.String("run.googleapis.com"),
 		Project: pulumi.String(gcpProjectId),
-	})
+	}, pulumi.DependsOn([]pulumi.Resource{cloudResourceManager}))
 
 	if cloudRunAdminErr != nil {
 		return EnabledServices{}, cloudRunAdminErr
@@ -99,7 +107,7 @@ func enableServices(ctx *pulumi.Context) (EnabledServices, error) {
 
 	artifactRegistryService, err := projects.NewService(ctx, artifactRegistryServiceName, &projects.ServiceArgs{
 		Service: pulumi.String("artifactregistry.googleapis.com"),
-	})
+	}, pulumi.DependsOn([]pulumi.Resource{cloudResourceManager}))
 
 	if err != nil {
 		return EnabledServices{}, err

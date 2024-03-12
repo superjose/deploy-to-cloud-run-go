@@ -42,6 +42,12 @@ Take note of the `project-id` (Usually the project's name).
 gcloud auth login
 ```
 
+Enable the service usage API
+
+```
+gcloud services enable serviceusage.googleapis.com
+```
+
 Open the link that will show up and finish logging in.
 
 12. (Optional) Set the project in google cloud CLI (Can be changed anytime). This saves you from passing `--project [PROJECT-ID]` into every `gcloud` command.
