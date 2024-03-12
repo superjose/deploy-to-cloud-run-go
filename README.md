@@ -24,8 +24,6 @@ An example project that shows you how to deploy to Google Cloud Run step by step
 
 ## Bootstrap the project:
 
-![Project Overview](https://dev-to-uploads.s3)amazonaws.com/uploads/articles/ancnkjl3ml5plgem9hy9)png)
-
 7. Create a `pulumi` directory.
 
 8. Run `pulumi new go` to initialize a pulumi project with Go (It can be your language of choice).
@@ -33,8 +31,6 @@ An example project that shows you how to deploy to Google Cloud Run step by step
 9. Navigate to the pulumi directory.
 
 10. Navigate to [cloud.google.com](cloud.google.com) and create a new project.
-
-![Project Id within Google Cloud Platform.](https://dev-to-uploads.s3)amazonaws.com/uploads/articles/xjila1mekxiiqrjr1t1k.png)
 
 Take note of the `project-id` (Usually the project's name).
 
@@ -86,6 +82,10 @@ pulumi config set gcp:project [PROJECT-ID]
 
 ```sh
 gcloud iam roles create pulumi_admin_role --project=[PROJECT-ID] --file='./roles.gcp.yml'
+```
+
+```sh
+gcloud projects add-iam-policy-binding [PROJECT-ID] --role projects/[PROJECT-ID]/roles/pulumi_admin_role   --member serviceAccount:pulumi-gcp@[PROJECT-ID].iam.gserviceaccount.com
 ```
 
 19. In case you need to make edits, change the file and use:
